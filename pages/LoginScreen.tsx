@@ -3,14 +3,11 @@ import {
   Text,
   View,
   KeyboardAvoidingView,
-  TextInput,
   TouchableOpacity,
   ScrollView,
-  ImageBackground,
   Dimensions,
-  Image,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import InputCoponent from "../components/Input";
 import { Button, Stack, VStack } from "native-base";
 import { useNavigation } from "@react-navigation/core";
@@ -20,110 +17,103 @@ import { RootStackParams } from "../App";
 
 
 const LoginScreen = () => {
-const navigation = useNavigation<NativeStackNavigationProp<RootStackParams>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParams>>();
+
+  const [data, setData]= useState()
 
   return (
     <ScrollView
       style={{
         flex: 1,
-        backgroundColor: "#ffffff",
+        backgroundColor: "#F12084",
       }}
       showsVerticalScrollIndicator={false}
     >
-      <ImageBackground
-        source={require("../images/bg.jpg")}
-        style={{
-          height: Dimensions.get("window").height / 2.8,
-        }}
-      >
-        <View style={styles.header}>
-          <Image
-            source={require("../images/pionero.png")}
-            style={styles.logo}
-          />
-        </View>
-      </ImageBackground>
-      <View style={styles.headerButton}>
-        <View
-          style={{
-            padding: 20,
-          }}
-        >
-          <Text style={styles.headerTitle}>Welcome!</Text>
-        </View>
-      </View>
+      <View style={{
+        height: Dimensions.get("window").height / 2.9,
+        justifyContent:'center',
+        alignItems:'center'
+        
+      }}>
+        <Text style={{color:"#ffffff", fontSize:40}}>Live Stream</Text>
 
+      </View>
       <KeyboardAvoidingView style={styles.content}>
-        <VStack direction="column" space={8}>
-          <InputCoponent
-            label="Email"
-            placehoder="Email"
-            size="2xl"
-            onFocus={() => {}}
-          />
-          <InputCoponent
-            label="Password"
-            placehoder="Password"
-            size="2xl"
-            onFocus={() => {}}
-            password
-          />
+        <VStack direction="column" space={8} style={styles.login}>
+          <View >
+            <Text style={styles.headerTitle}>
+              Welcome!
+            </Text>
+          </View>
+          <View style={styles.textInput} >
+            <VStack space={5}>
+            <InputCoponent
+              label="Email"
+              placehoder="Enter email ID"
+              size="2xl"
+              onFocus={() => { }}
+            />
+            <InputCoponent
+              label="Password"
+              placehoder="Enter password"
+              size="2xl"
+              onFocus={() => { }}
+              password
+            />
+            </VStack>
+            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')} style={styles.forgotPassword}>
+              <Text style={{color:'#ffffff'}}>Forgot password</Text>
+            </TouchableOpacity>
+            <View>
+              <TouchableOpacity >
+                <Stack mb="10" mt="10"  >
+                  <Button size="lg" bgColor={'#000000'}>Login</Button>
+                </Stack>
+              </TouchableOpacity>
+            </View>
+          </View>
         </VStack>
       </KeyboardAvoidingView>
-      <VStack>
-        <View>
-          <TouchableOpacity>
-            <Stack mb="10" mt="10" mr="4" ml="4" >
-            <Button size="lg">Login</Button>
-
-
-            </Stack>
-          </TouchableOpacity>
-        </View>
-      </VStack>
-
       <View style={styles.nav}>
-        <TouchableOpacity   onPress={()=>navigation.navigate('ForgotPassword')}>
-            <Text>Forgot password</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=>navigation.navigate('Register')}>
-          <Text>Register</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <Text>Don’t have an account? Create account,Register</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
 };
-
 export default LoginScreen;
-
 const styles = StyleSheet.create({
   header: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  logo: {
-    width: 200,
-    height: 60,
-  },
-  headerButton: {
-    flex: 1,
-    bottom: 50,
-    backgroundColor: "#ffffff",
-    borderTopStartRadius: 60,
-    borderTopEndRadius: 60,
-  },
   headerTitle: {
-    textTransform: "uppercase",
     fontSize: 32,
-    color: "#4632A1",
+    color: "#FFFFFF",
+    textAlign:'center'
   },
   content: {
     flex: 1,
     marginLeft: 20,
     marginRight: 20,
   },
-  login: {},
+  login: {
+
+    backgroundColor: "#9c0b4c",
+    borderRadius: 30,
+    shadowColor: ' rgba(0, 0, 0, 0.5)'
+  },
+  textInput:{
+    padding:20,
+    flex:1
+
+  },
+  forgotPassword:{
+    flexDirection:'row',
+    justifyContent:'flex-end',
+  },
   nav: {
     flexDirection: "row",
     justifyContent: "space-around",
