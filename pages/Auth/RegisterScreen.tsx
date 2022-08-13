@@ -5,12 +5,13 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   ScrollView,
+  Platform,
 } from "react-native";
 import React from "react";
 import { Box, Button, Divider, FormControl, Input, Stack} from "native-base";
 import { useNavigation } from "@react-navigation/core";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParams } from "../App";
+import { RootStackParams } from "../../App";
 
 
 
@@ -30,7 +31,7 @@ const ResgiterScreen = () => {
           <Text style={styles.headerTitle}>Register!</Text>
           <Divider m="3" width='95%' />
         </View>
-        <KeyboardAvoidingView style={styles.content}>
+        <KeyboardAvoidingView style={styles.content} keyboardVerticalOffset={20} behavior={Platform.OS==='ios'?"padding":"height"}>
           <Box>
             <FormControl>
               <FormControl.Label  _text={{color:"#ffffff"}}>Full name</FormControl.Label>

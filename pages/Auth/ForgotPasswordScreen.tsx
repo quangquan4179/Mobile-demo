@@ -12,7 +12,7 @@ import { Box, Button, Divider, FormControl, Icon, Input, Stack } from "native-ba
 import { useNavigation } from "@react-navigation/core";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
-import { RootStackParams } from "../App";
+import { RootStackParams } from "../../App";
 
 const ForgotPasswordScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParams>>();

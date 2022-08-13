@@ -2,14 +2,14 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "./pages/LoginScreen";
-import HomeScreen from "./pages/HomeScreen";
+import LoginScreen from "./pages/Auth/LoginScreen";
+import MainScreen from "./pages/MainScreen";
 import { NativeBaseProvider } from "native-base";
-import ResgiterScreen from "./pages/RegisterScreen";
-import ForgotPasswordScreen from "./pages/ForgotPasswordScreen";
+import ResgiterScreen from "./pages/Auth/RegisterScreen";
+import ForgotPasswordScreen from "./pages/Auth/ForgotPasswordScreen";
 
 export type RootStackParams ={
-  Home:any;
+  Main:any;
   Login:any;
   Register:any;
   ForgotPassword:any;
@@ -36,7 +36,7 @@ export default function App() {
             name="ForgotPassword"
             component={ForgotPasswordScreen}
           />
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen  options={{ headerShown: false }} name="Main" component={MainScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
